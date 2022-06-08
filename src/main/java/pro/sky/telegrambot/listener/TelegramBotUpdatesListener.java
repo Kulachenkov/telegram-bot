@@ -65,7 +65,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         List<NotificationTask> tasks = notificationService.findNotification();
 
         if (!tasks.isEmpty()) {
-            tasks.stream().map(NotificationTask::getChat_id).forEach(s -> new SendMessage(s, "messageText"));
+            tasks.stream().map(NotificationTask::getChat_id).forEach(s -> telegramBot.execute(new SendMessage(s, "messageText")) );
         }
 
     }
